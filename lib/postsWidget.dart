@@ -5,6 +5,8 @@ import 'dart:math';
 import 'getImageList.dart';
 
 final imageProvider = FutureProvider((ref) => getImageList());
+int listNumber = 1;
+int listLength = 0;
 
 class postsWidget extends HookConsumerWidget {
   const postsWidget({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class postsWidget extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final images = ref.watch(imageProvider);
+    print("build ran");
     return Card(
       child: Column(
         children: [
@@ -23,8 +26,7 @@ class postsWidget extends HookConsumerWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image:
-                      CachedNetworkImageProvider(data[listPosition(data)].url),
+                  image: CachedNetworkImageProvider(data[listNumber].url),
                   alignment: Alignment.center,
                 ),
               ),
@@ -42,7 +44,10 @@ int listPosition(data) {
   Random random = Random();
 
   int randomNumber = random.nextInt(data.length);
+  print(randomNumber.toString());
   return randomNumber;
 }
 
-void cycleImages() {}
+void cycleImages() {
+  listNumber++;
+}

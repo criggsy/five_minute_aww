@@ -13,6 +13,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   void newImage() {
     setState(() {
+      cycleImages();
       postsWidget;
     });
   }
@@ -24,7 +25,7 @@ class MyHomePageState extends State<MyHomePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const postsWidget(),
+        postsWidget(),
         Container(
           alignment: Alignment.bottomCenter,
           child: IconButton(
