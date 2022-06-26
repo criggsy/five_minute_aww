@@ -1,4 +1,16 @@
 class Posts {
   String url;
-  Posts({required this.url});
+  int height;
+  int width;
+
+  Posts({required this.url, required this.height, required this.width});
+
+
+
+  int getHeight() {
+
+    return this.height;
+    
+  }
+
 }

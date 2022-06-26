@@ -8,13 +8,14 @@ final imageProvider = FutureProvider((ref) => getImageList());
 int listNumber = 1;
 int listLength = 0;
 
+
 class postsWidget extends HookConsumerWidget {
   const postsWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final images = ref.watch(imageProvider);
-    print("build ran");
+
     return Card(
       child: Column(
         children: [
@@ -44,10 +45,17 @@ int listPosition(data) {
   Random random = Random();
 
   int randomNumber = random.nextInt(data.length);
-  print(randomNumber.toString());
   return randomNumber;
 }
 
 void cycleImages() {
   listNumber++;
+}
+
+void getImageHeight() {
+  
+
+  
+  
+
 }

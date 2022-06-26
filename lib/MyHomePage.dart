@@ -11,32 +11,51 @@ class MyHomePage extends StatefulWidget {
 }
 
 class MyHomePageState extends State<MyHomePage> {
+  bool selected = false;
   void newImage() {
     setState(() {
       cycleImages();
-      postsWidget;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        postsWidget(),
-        Container(
-          alignment: Alignment.bottomCenter,
-          child: IconButton(
-            iconSize: 50.0,
-            onPressed: newImage,
-            icon: const Icon(Icons.favorite),
-            color: Colors.blueAccent,
-            padding: const EdgeInsets.all(100),
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selected = !selected;
+          cycleImages();
+        });
+      },
+      child: Scaffold(
+          body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          AnimatedContainer(
+            width: MediaQuery.of(context).size.width - 50,
+            height: MediaQuery.of(context).size.height - 300,
+            color: selected ? Colors.red : Colors.blue,
+            alignment:
+                selected ? Alignment.center : AlignmentDirectional.topCenter,
+            duration: const Duration(seconds: 2),
+            curve: Curves.fastOutSlowIn,
+            child: postsWidget(),
           ),
-        )
-      ],
-    ));
+
+          // ignore: prefer_const_constructors
+          Container(
+            alignment: Alignment.bottomCenter,
+            child: IconButton(
+              iconSize: 50.0,
+              onPressed: newImage,
+              icon: const Icon(Icons.favorite),
+              color: Colors.blueAccent,
+              padding: const EdgeInsets.all(100),
+            ),
+          )
+        ],
+      )),
+    );
   }
 }
